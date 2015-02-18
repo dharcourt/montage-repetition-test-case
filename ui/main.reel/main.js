@@ -15,6 +15,7 @@ exports.Main = Component.specialize(/** @lends Main# */ {
             this.super();
             window.setTimeout(function () {
                 self.items.splice(1, 1);
+                self.items[0].value = 5;
             }, 10000)
         }
     },
