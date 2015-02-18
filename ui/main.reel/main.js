@@ -11,7 +11,25 @@ var Component = require("montage/ui/component").Component;
 exports.Main = Component.specialize(/** @lends Main# */ {
     constructor: {
         value: function Main() {
+            var self = this;
             this.super();
+            window.setTimeout(function () {
+                self.items.splice(1, 1);
+            }, 10000)
+        }
+    },
+
+    items: {
+        value: [
+            {type: "item", value: 1},
+            {type: "item", value: 2},
+            {type: "item", value: 3}
+        ]
+    },
+
+    square: {
+        value: function (value) {
+            return value * value;
         }
     }
 });

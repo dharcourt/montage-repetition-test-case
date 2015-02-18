@@ -2,21 +2,56 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Main</title>
-
+    <title>
+        Main
+    </title>
     <link rel="stylesheet" href="main.css">
-
     <script type="text/montage-serialization">
-        {
-            "owner": {
-                "properties": {
-                    "element": {"#": "main"}
-                }
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "main"}
+            }
+        },
+        "item": {
+            "prototype": "ui/item.reel",
+            "properties": {
+                "element": {"#": "item"}
+            },
+            "bindings": {
+                "square": {"<-": "@owner.square(@repetition:iteration.object.value)"}
+            }
+        },
+        "repetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "repetition"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.items"}
+            }
+        },
+        "substitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "substitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@repetition:iteration.object.type"}
             }
         }
+    }
     </script>
 </head>
 <body>
-    <div data-montage-id="main" data-montage-skin="light" class="Main"></div>
+    <div data-montage-id="main" data-montage-skin="light" class="Main">
+        <ul data-montage-id="repetition">
+            <li data-montage-id="substitution">
+                <div data-arg="item">
+                    <div data-montage-id="item"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
 </body>
 </html>
